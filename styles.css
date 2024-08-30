@@ -41,12 +41,14 @@ body {
 .main_section_bordgame_case{
     height: 25px;
     width: 25px ;
+    /* background-color: red; */
     background-color: rgb(206, 169, 240);
     border-width: 1.5px;
     border-style: solid;
     border-color: rgb(224, 240, 255);
     text-align: center;
 }
+
 .main_section_role{
     display:flex;
     justify-content: center;
@@ -59,9 +61,13 @@ body {
     background-color: rgb(224, 240, 255);
     border-radius: 6px;
     text-align: center;
-    color:pink
 }
-.main_section_role_determinator p {
+.player {
+    font-weight:bold;
+    color:pink;
+    background: 'red';
+}
+.main_section_role_determinator {
     font-weight:bold;
 }
 .main_section_role :hover{

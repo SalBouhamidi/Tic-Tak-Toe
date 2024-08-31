@@ -2,26 +2,26 @@
 function boardmaker(id){
     board = document.createElement("div");
     board.setAttribute("class", `horizantal${id}`);
-    // board.setAttribute("onClick", `detectPositionCol(${id})`)
     document.querySelector(".main_section_bordgame").appendChild(board);
-    for(let j= 0; j < 20; j++){
-        divcreator(id, j);
+    for(let col= 0; col < 20; col++){
+        divcreator(id, col);
     }
 }
 
-function divcreator (id, j){
+function divcreator (id, col){
     cases = document.createElement("div");
     cases.setAttribute("class", "main_section_bordgame_case")
-    cases.setAttribute("id", `main_section_bordgame_case${id}-${j}`);
-    cases.setAttribute("onClick", `position(${j}, ${id})`)
+    cases.setAttribute("id", `${id}-${col}`);
+    cases.setAttribute("onClick", `position(${col}, ${id})`)
     document.querySelector(`.horizantal${id}`).appendChild(cases);
+    // console.log(`rooow:${id}-cool:${col}`)
 
 }
 
 
-function position(j,id){
-    detectwinner();
-    const click = document.getElementById(`main_section_bordgame_case${id}-${j}`);
+function position(col,id){
+
+    const click = document.getElementById(`${id}-${col}`);
 
     if(click.innerHTML === '' ){
         if(localStorage.getItem('lastchar') === 'X'){
@@ -39,8 +39,9 @@ function position(j,id){
     }else{
         alert('choose an empty case');
     }
-    // console.log(localStorage.getItem('lastchar'));
-    // console.log(click.id)
+    const myTimeout = setTimeout(detectwinner, 2000);
+
+
 
 }
 function whoGannaPlay(){
@@ -54,29 +55,36 @@ function whoGannaPlay(){
     }else if(result == 'O'){
         document.querySelector('.player').innerHTML = 'X: ganna play'
     }
-    // console.log(player.innerHTML)
 }
+
 
 function detectwinner(){
-
-    let prefix = 'main_section_bordgame_case19-';
-    let max= 20;
-    for(let j =0; `${prefix}${j}`< `${prefix}${max}`; j++){
-        for(let i = 0; document.getElementById(`${prefix}${i}`).id < `${prefix}${j}` ; i++){
-            // console.log('heygg');
-        }
-    }
-    console.log(document.getElementById(`${prefix}19`).id)
-
+    let count= 0;
+    for(let row = 0; row <20; row++){
+        for(let col= 0; col <20; col++){
+            const caseid = document.getElementById(`${col}-${row}`).innerText;
+            if(col< 19){
+                const caseidplusOne = document.getElementById(`${col+1}-${row}`).innerText;
+                if(caseid !== ''){
+                    if(caseidplusOne){
+                        if(caseid == caseidplusOne){
+                            count= count+1;
+                        }else{
+                            count = 0;
+                        }
+                    }
     
+                }
+
+            }
+
  
+
+        }
+        console.log('counter counting' + count);
+        return count;
+    } 
 }
-
-
-
-
-
-
 
 
 function boardgame (){

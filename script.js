@@ -76,92 +76,89 @@ function stepback(number){
     }
 }
 
-function detectwinner(click, id, row) {
-let countX = 1;
-let countO = 1;
-let step = stepForward(id);
-let total = id+step;
-let stepb = stepback(id);
-// console.log(stepb);
-let totalBack = id-stepb;
-// console.log(totalBack);
+function horizantalDetectWin(id, row){
+    let countX = 1;
+    let countO = 1;
+    let step = stepForward(id);
+    let total = id+step;
+    let stepb = stepback(id);
+    // console.log(stepb);
+    let totalBack = id-stepb;
+    // console.log(totalBack);
 
-for(let col = id; col < total; col++){
-    if(col < 19){
-        let cell= document.getElementById(`${col}-${row}`).innerText;
-        let cellpluspone = document.getElementById(`${col+1}-${row}`).innerHTML;
-            if(cell == cellpluspone){
-                if(cell == 'X'){
-                    countX++;
-                    // console.log( countX);
-                    if(countX == 5){
-                        alert('the X is the winner');
-                        break;
-                    }else{
-                        for(let col = id; col > totalBack; col--){
-                            if(col > 0){
-                                let cell= document.getElementById(`${col}-${row}`).innerText;
-                                let cellpluspone = document.getElementById(`${col-1}-${row}`).innerHTML;
-                                if(cell == cellpluspone){
-                                    if(cell == 'X'){
-                                        countX++;
-                                        // console.log('wlah ila bseh ')
-                                        if(countX == 5){
-                                            console.log('heet')
-                                            alert('the X is winner');
-                                            break;
-                                        }
-
-                                    }
-                                }
-                                
-
-
-                            }
+    for(let col = id; col < total; col++){
+        if(col < 19){
+            let cell= document.getElementById(`${col}-${row}`).innerText;
+            let cellpluspone = document.getElementById(`${col+1}-${row}`).innerHTML;
+            // console.log(document.getElementById(`${col+1}-${row}`));
+                if(cell == cellpluspone){
+                    if(cell == 'X'){
+                        countX++;
+                        // console.log( countX);
+                        if(countX == 5){
+                            alert('the X is the winner');
+                            break;
                         }
 
-                    }
-                }else if(cell == 'O'){
-                    console.log("ooooooo");
-                    countO++;
-                    if(countO == 5){
-                        alert('the O is the winner');
-                        break;
-                    }else{
-                        for(let col = id; col > totalBack; col--){
-                            if(col > 0){
-                                let cell= document.getElementById(`${col}-${row}`).innerText;
-                                let cellpluspone = document.getElementById(`${col-1}-${row}`).innerHTML;
-                                if(cell == cellpluspone){
-                                    if(cell == 'O'){
-                                        countO++;
-                                        // console.log('counter o is workng')
-                                        if(countO == 5){
-                                            alert('the X is winner');
-                                            break;
-                                        }
-
-                                    }
-                                }
-                            }
+                    }else if(cell == 'O'){
+                        console.log("ooooooo");
+                        countO++;
+                        if(countO == 5){
+                            alert('the O is the winner');
+                            break;
                         }
+
                     }
                 }
+    
+        else if(cell !== cellpluspone){
+                console.log('entering hereeeee')
+                for(let col = id; col > totalBack; col--){
+                    // console.log('enter the col stepback')
+                    if(col > 0){
+                        let cell= document.getElementById(`${col}-${row}`).innerText;
+                        let cellpluspone = document.getElementById(`${col-1}-${row}`).innerHTML;
+                        if(cell == cellpluspone){
+                            if(cell == 'X'){
+                                console.log('bjoj are equal to X');
+                                countX++;
+                                console.log('wlah ila bseh '+countX)
+                                if(countX == 5){
+                                    console.log('heet')
+                                    alert('the X is winner');
+                                    break;
+                                }
+
+                            }else if(cell == 'O'){
+                                countO++;
+                                if(countO == 5){
+                                    alert('the O is the winner');
+                                    break;
+                                }
+                            }
+                        }
+                        
+
+
+                    }
+                }            
+                // console.log("zeeeeeeeeeero");
+                // countX = 0;
+                // countO = 0;
             }
-
-    else{                    
-            console.log("zeeeeeeeeeero");
-            countX = 0;
-            countO = 0;
+    
+        }else{
+            break;
         }
-
-    }else{
-        break;
     }
 }
 
-console.log('countx' +countX);
-console.log('county' +countO);
+
+function detectwinner(click, id, row) {
+    horizantalDetectWin(id,row);
+
+// console.log('countx' +countX);
+// console.log('county' +countO);
 
 
 }

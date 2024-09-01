@@ -112,7 +112,7 @@ function horizantalDetectWin(id, row){
                 }
     
         else if(cell !== cellpluspone){
-                console.log('entering hereeeee')
+                // console.log('entering hereeeee')
                 for(let col = id; col > totalBack; col--){
                     // console.log('enter the col stepback')
                     if(col > 0){
@@ -152,10 +152,85 @@ function horizantalDetectWin(id, row){
         }
     }
 }
+function verticalDetectwinner(id,row){
+    let counterX= 1;
+    let counterO=1;
+    let stepForw=stepForward(row);
+    // console.log(stepForw);
+    let totalForw = row +stepForw;
+    let stepBack=stepback(row);
+    let totalBack = row -stepBack;
+    // console.log(totalBack);
+    for(let roow = row; roow < totalForw; roow++){
+        if(roow < 19){
+            let cell= document.getElementById(`${id}-${roow}`).innerText;
+            let cellpluspone = document.getElementById(`${id}-${roow+1}`).innerHTML;
+            // console.log(document.getElementById(`${id}-${roow+1}`));
+                if(cell == cellpluspone){
+                    if(cell == 'X'){
+                        counterX++;
+                        // console.log( countX);
+                        if(counterX == 5){
+                            alert('the X is the winner');
+                            break;
+                        }
+
+                    }else if(cell == 'O'){
+                        // console.log("ooooooo");
+                        counterO++;
+                        if(counterO == 5){
+                            alert('the O is the winner');
+                            break;
+                        }
+
+                    }
+                }
+    
+        else if(cell !== cellpluspone){
+                // console.log('entering hereeeee')
+                for(let roow = row; roow > totalBack; roow--){
+                    // console.log('enter the roow stepback')
+                    if(roow > 0){
+                        let cell= document.getElementById(`${id}-${roow}`).innerText;
+                        let cellpluspone = document.getElementById(`${id}-${roow-1}`).innerHTML;
+                        if(cell == cellpluspone){
+                            if(cell == 'X'){
+                                counterX++;
+                                console.log(counterX)
+                                if(counterX == 5){
+                                    alert('the X is winner');
+                                    break;
+                                }
+
+                            }else if(cell == 'O'){
+                                counterO++;
+                                if(counterO == 5){
+                                    alert('the O is the winner');
+                                    break;
+                                }
+                            }
+                        }
+                        
+
+
+                    }
+                }            
+            }
+    
+        }else{
+            break;
+        }
+    }
+
+
+
+}
 
 
 function detectwinner(click, id, row) {
     horizantalDetectWin(id,row);
+    verticalDetectwinner(id, row);
+    
 
 // console.log('countx' +countX);
 // console.log('county' +countO);

@@ -76,6 +76,12 @@ function stepback(number){
     }
 }
 
+// function diagonalstepLeftUp(row,col){
+//     if(row >= 4){
+//         step=4;
+//     }else if(row < 4)
+// }
+
 function horizantalDetectWin(id, row){
     let countX = 1;
     let countO = 1;
@@ -227,9 +233,144 @@ function verticalDetectwinner(id,row){
 }
 
 
+
+
+
+
+
+function diagonalRight(id,row){
+    // console.log('yeyeye')
+    let countX= 1;
+    let countY=1;
+    let rowStepBack = stepback(row);
+    let totalRowsteps = row -rowStepBack;
+    let colSteps = stepback(id);
+    let totalColSteps = id -colSteps;
+    // console.log(totalColSteps);
+
+    if(id < 19){
+        for(let col= id, roow= row;roow > totalRowsteps; roow--,col++){
+            let cellMain = document.getElementById(`${col}-${roow}`).innerText;
+                let cellplusOne= document.getElementById(`${col+1}-${roow-1}`).innerText;
+
+                if(cellMain === cellplusOne){
+                    if(cellMain == 'X'){
+                        countX++;
+                        if(countX == 5){
+                            alert('the winner is x');
+                            break;
+                        }
+                    }else if(cellMain == 'O'){
+                        countY++;
+                        if(countY == 5){
+                            alert('teh winner is o');
+                            break
+                        }
+                    }
+                }else{
+                for(let col= id, roow= row;col > totalColSteps; roow++,col--){
+                    let cellMain = document.getElementById(`${col}-${roow}`).innerText;
+                    let cellplusOne= document.getElementById(`${col-1}-${roow+1}`).innerText;
+    
+                    if(cellMain == cellplusOne){
+                        if(cellMain == 'X'){
+                            countX++;
+                            if(countX == 5){
+                                alert('the winner is x');
+                                break;
+                            }
+                        }else if(cellMain == 'O'){
+                            countY++;
+                            if(countY == 5){
+                                alert('teh winner is o');
+                                break
+                            }
+                        }
+    
+                    }
+                }
+            }
+        }
+
+
+    }
+
+ 
+
+
+
+
+
+}
+
+function diagonalLeft(id,row){
+let counterO = 1; 
+let counterX =1; 
+let steps =stepback(row);
+// console.log(steps);
+let stepsUp = row - steps;
+// console.log(stepsUp)
+let stepDown = row +steps;
+// console.log(stepDown);
+for(let roow=row, col=id; roow > stepsUp; roow--,col--){
+    // console.log('hey left')
+    let cell = document.getElementById(`${col}-${roow}`).innerText;
+    let cellBefore = document.getElementById(`${col-1}-${roow-1}`).innerText
+    console.log(document.getElementById(`${col}-${roow}`));
+    // console.log();
+    if(cell === cellBefore){
+        if(cell === 'X'){
+            // console.log('yee x')
+            counterX++;
+            if(counterX === 5){
+                alert('X is the winner');
+                break;
+            }
+        }else if(cell == 'O'){
+            counterO++;
+            if(counterO === 5){
+                alert('O is the winner');
+                break;
+            }
+        }
+    }else if(cell !== cellBefore){
+        if(id <=19){
+            for(let roow=row, col=id; roow < stepDown; roow++,col++){
+                let cell = document.getElementById(`${col}-${roow}`).innerText;
+                let cellPlusOne = document.getElementById(`${col+1}-${roow+1}`).innerText;
+                // console.log(document.getElementById(`${col+1}-${roow+1}`));
+                if(cell === cellPlusOne){
+                    if(cell == 'X'){
+                        counterX++;
+                        (console.log('counter is here'+counterX))
+                        if(counterX === 5){
+                            alert('X is the winner');
+                            break;
+                        }
+                    }else if(cell == "O"){
+                        counterO++;
+                        if(counterO === 5){
+                            alert('O is the winner');
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+        }
+    }
+}
+
+
+}
+
+
 function detectwinner(click, id, row) {
     horizantalDetectWin(id,row);
     verticalDetectwinner(id, row);
+    diagonalRight(id,row)
+    diagonalLeft(id,row);
     
 
 // console.log('countx' +countX);

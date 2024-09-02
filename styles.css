@@ -53,6 +53,7 @@ body {
     display:flex;
     justify-content: center;
     align-items: center;
+    gap:6%;
     padding: 2%;
 }
 .main_section_role_determinator{

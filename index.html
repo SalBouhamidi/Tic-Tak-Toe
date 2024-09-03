@@ -11,17 +11,19 @@
     <section class="main_section">
         <h1 class="main_section_title">Welcome to Tic Tak Teo</h1>
         <div class="main_section_buttons">
-            <button > Restart the Game <i class="fa-solid fa-rotate-right" style="color: #ffffff;"></i></button>
-            <button> View the instractions <i class="fa-solid fa-chalkboard-user" style="color: #ffffff;"></i></button>
+            <button class="restart" onclick="restartGame()"> Restart the Game <i class="fa-solid fa-rotate-right" style="color: #ffffff;"></i></button>
+            <button class="instructions" onclick="InstructionsBlock()"> View the instractions <i class="fa-solid fa-chalkboard-user" style="color: #ffffff;"></i></button>
         </div>
+        <p id="instractions-text">celui qui va aligner 5 symboles de X ou O, va etre le gagnant. Allez bon courage</p>
+        <div class=" score">
+        <div class="score-x">Score X: </div>
+        <div class="score-o">Score O: </div>
+        </div>
+
         <div class="main_section_role">
-            <!-- <div>player X:</div> -->
             <div class="main_section_role_determinator">
                 <!-- <p>X: Ganna play</p> -->
             </div>
-            <!-- <div>player Y:</div> -->
-
-
         </div>
         <div class="main_section_bordgame">
 

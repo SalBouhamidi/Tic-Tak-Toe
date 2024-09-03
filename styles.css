@@ -53,7 +53,7 @@ body {
     display:flex;
     justify-content: center;
     align-items: center;
-    gap:6%;
+    gap:4%;
     padding: 2%;
 }
 .main_section_role_determinator{
@@ -74,6 +74,88 @@ body {
 .main_section_role :hover{
     background-color: pink;
     color: rgb(224, 240, 255);
+}
+.score{
+    display: flex;
+    justify-content: center;
+    gap:2%;
+    margin-top:2%
+}
+.score-x{
+    width:10%;
+    padding: 1%;
+    border-radius: 6px;
+    background-color: rgb(224, 240, 255);
+    color:rgb(206, 169, 240);
+    text-align: center;
+    font-weight: bold
+
+
+}
+
+.score-o{
+    width:10%;
+    padding: 1%;
+    border-radius: 6px;
+    background-color: rgb(224, 240, 255);
+    color:rgb(206, 169, 240);
+    text-align: center;
+    font-weight: bold
+}
+#instractions-text{
+    display: none;
+    text-align: center;
+    color:rgb(224, 240, 255);
+    font-weight:bold;
+
+}
+@media only screen and (max-width: 730px) {
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .main_section_title{
+        text-align: center;
+    }
+    .main_section{
+        width: 100vh !important;
+        margin-left:5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        /* padding: 0%; */
+    }
+
+    .main_section_buttons button{
+        width:40%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+
+    }
+    .score{
+        display: flex;
+        align-items: center;
+        justify-content: space-between; 
+    }
+    .score div{
+        width: 30vw;
+        height: 5vh;
+        text-align: center;
+        /* padding: 3%; */
+    }
+    .main_section_role_determinator{
+        width:30vw;
+    }
+    .main_section_bordgame{
+        width: 90vh;
+        /* margin: 2%; */
+    }
+    .main_section_bordgame_case{
+        width:19px;
+        height:19px;
+    }
 }
 
 

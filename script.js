@@ -408,63 +408,64 @@ if(id>0 ){
         let cell = document.getElementById(`${col}-${roow}`).innerText;
         if(col-1 > 0){
             // console.log(`tessssst ${col-1}`);
-            var cellBefore = document.getElementById(`${col-1}-${roow-1}`).innerText;
+            let cellBefore = document.getElementById(`${col-1}-${roow-1}`).innerText;
+            if(cell === cellBefore){
+                if(cell === 'X'){
+                    counterX++;
+                    if(counterX === 5){
+                        scoreCalculation()
+                        alert('X is the winner ##l');
+                        break;
+                    }
+                }else if(cell == 'O'){
+                    counterO++;
+                    if(counterO === 5){
+                        scoreCalculationO()
+                        alert('O is the winner #l');
+                        break;
+                    }
+                }
+            }else if(cell !== cellBefore){
+                // console.log('they ganna check down row '+row +"and steps"+stepsdownrow);
+    
+        
+                if(id < 19){
+                    for(let roow=row, col=id; roow < stepsdownrow && col < 19; roow++,col++){
+                        let cell = document.getElementById(`${col}-${roow}`).innerText;
+                        if(col +1 <=19 && roow+1 <= 19){
+                            let cellPlusOne = document.getElementById(`${col+1}-${roow+1}`).innerText;
+    
+                        if(cell === cellPlusOne){
+                            if(cell == 'X'){
+                                counterX++;
+                                if(counterX === 5){
+                                    scoreCalculation()
+                                    alert('X is the winner*l');
+                                    break;
+                                }
+                            }else if(cell == "O"){
+                                counterO++;
+                                if(counterO === 5){
+                                    scoreCalculationO()
+                                    alert('O is the winner***l');
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    }
+    
+                }
+    
+        
+        
+                
+            }
         }
         // console.log(document.getElementById(`${col-1}-${roow-1}`));
 
 
-        if(cell === cellBefore){
-            if(cell === 'X'){
-                counterX++;
-                if(counterX === 5){
-                    scoreCalculation()
-                    alert('X is the winner ##l');
-                    break;
-                }
-            }else if(cell == 'O'){
-                counterO++;
-                if(counterO === 5){
-                    scoreCalculationO()
-                    alert('O is the winner #l');
-                    break;
-                }
-            }
-        }else if(cell !== cellBefore){
-            // console.log('they ganna check down row '+row +"and steps"+stepsdownrow);
 
-    
-            if(id < 19){
-                for(let roow=row, col=id; roow < stepsdownrow && col < 19; roow++,col++){
-                    let cell = document.getElementById(`${col}-${roow}`).innerText;
-                    if(col +1 <=19 && roow+1 <= 19){
-                        let cellPlusOne = document.getElementById(`${col+1}-${roow+1}`).innerText;
-
-                    if(cell === cellPlusOne){
-                        if(cell == 'X'){
-                            counterX++;
-                            if(counterX === 5){
-                                scoreCalculation()
-                                alert('X is the winner*l');
-                                break;
-                            }
-                        }else if(cell == "O"){
-                            counterO++;
-                            if(counterO === 5){
-                                scoreCalculationO()
-                                alert('O is the winner***l');
-                                break;
-                            }
-                        }
-                    }
-                }
-                }
-
-            }
-
-    
-    
-            
-        }
     }
 
 }

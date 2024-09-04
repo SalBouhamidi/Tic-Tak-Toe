@@ -145,17 +145,11 @@ function scoreCalculationO(){
 function horizantalDetectWin(id, row){
     let countX = 1;
     let countO = 1;
-    let scoreX = 0;
-    let scoreO = 0;
     let step = stepForward(id);
     let total = id+step;
     let stepb = stepback(id);
     // console.log(stepb);
     let totalBack = id-stepb;
-    // console.log(totalBack);
-    // let scoreX = localStorage.getItem('ggg');
-    // console.log(localStorage.getItem('scoreX'));
-
     for(let col = id; col < total; col++){
         if(col < 19){
             let cell= document.getElementById(`${col}-${row}`).innerText;
@@ -313,61 +307,76 @@ function verticalDetectwinner(id,row){
 
 
 function diagonalRight(id,row){
-    // console.log('yeyeye')
     let countX= 1;
     let countY=1;
     let rowStepBack = stepback(row);
     let totalRowsteps = row -rowStepBack;
     let colSteps = stepback(id);
     let totalColSteps = id -colSteps;
-    // console.log(totalColSteps);
+    // let colsteps = stepForward(id);
+    // console.log(colsteps);
+
 
     if(id < 19){
-        for(let col= id, roow= row;roow > totalRowsteps; roow--,col++){
+        for(let col= id, roow= row;roow > totalRowsteps && col <19; roow--,col++){
+            // console.log('here')
             let cellMain = document.getElementById(`${col}-${roow}`).innerText;
+            if(col+1 <=19 && roow-1 >=0 ){
                 let cellplusOne= document.getElementById(`${col+1}-${roow-1}`).innerText;
-
                 if(cellMain === cellplusOne){
                     if(cellMain == 'X'){
                         countX++;
                         if(countX == 5){
                             scoreCalculation()
-                            alert('the winner is x');
+                            alert('the winner is x***');
                             break;
                         }
                     }else if(cellMain == 'O'){
                         countY++;
                         if(countY == 5){
                             scoreCalculationO()
-                            alert('teh winner is o');
+                            alert('teh winner is o***');
                             break
                         }
                     }
                 }else{
-                for(let col= id, roow= row;col > totalColSteps; roow++,col--){
+                for(let col= id, roow= row;col > totalColSteps && row < 19; roow++,col--){
+                    console.log(totalColSteps + 'and col '+ col);
                     let cellMain = document.getElementById(`${col}-${roow}`).innerText;
-                    let cellplusOne= document.getElementById(`${col-1}-${roow+1}`).innerText;
-    
-                    if(cellMain == cellplusOne){
-                        if(cellMain == 'X'){
-                            countX++;
-                            if(countX == 5){
-                                scoreCalculation()
-                                alert('the winner is x');
-                                break;
+
+
+                    if(col-1 >= 0 && row+1 < 19){
+                        let cellplusOne= document.getElementById(`${col-1}-${roow+1}`).innerText;
+                        console.log(document.getElementById(`${col-1}-${roow+1}`));
+                        if(cellMain == cellplusOne){
+                            if(cellMain == 'X'){
+                                countX++;
+                                if(countX == 5){
+                                    scoreCalculation()
+                                    alert('the winner is x**');
+                                    break;
+                                }
+                            }else if(cellMain == 'O'){
+                                countY++;
+                                if(countY == 5){
+                                    scoreCalculationO()
+                                    alert('teh winner is o**');
+                                    break
+                                }
                             }
-                        }else if(cellMain == 'O'){
-                            countY++;
-                            if(countY == 5){
-                                scoreCalculationO()
-                                alert('teh winner is o');
-                                break
-                            }
+        
                         }
-    
+
                     }
+    
+
                 }
             }
+
+
+            }
+
+
         }
 
 
@@ -378,64 +387,81 @@ function diagonalLeft(id,row){
 let counterO = 1; 
 let counterX =1; 
 let steps =stepback(row);
-// console.log(steps);
 let stepsUp = row - steps;
-// console.log(stepsUp)
-let stepDown = row +steps;
-// console.log(stepDown);
-for(let roow=row, col=id; roow > stepsUp; roow--,col--){
-    // console.log('hey left')
-    let cell = document.getElementById(`${col}-${roow}`).innerText;
-    let cellBefore = document.getElementById(`${col-1}-${roow-1}`).innerText
-    // console.log(document.getElementById(`${col}-${roow}`));
-    // console.log();
-    if(cell === cellBefore){
-        if(cell === 'X'){
-            // console.log('yee x')
-            counterX++;
-            if(counterX === 5){
-                scoreCalculation()
-                alert('X is the winner');
-                break;
-            }
-        }else if(cell == 'O'){
-            counterO++;
-            if(counterO === 5){
-                scoreCalculationO()
-                alert('O is the winner');
-                break;
-            }
+
+let stepdownForw = stepForward(row);
+let stepsdownrow = stepdownForw + row;
+// console.log('step down forward'+stepsdownrow);
+
+// console.log('steps are '+stepsup);
+// let stepDown = row +steps;
+if(id>0 ){
+    for(let roow=row, col=id; roow > stepsUp &&  col>0; roow--,col--){
+        // console.log('hey left')
+        let cell = document.getElementById(`${col}-${roow}`).innerText;
+        if(col-1 > 0){
+            // console.log(`tessssst ${col-1}`);
+            var cellBefore = document.getElementById(`${col-1}-${roow-1}`).innerText;
         }
-    }else if(cell !== cellBefore){
-        if(id <=19){
-            for(let roow=row, col=id; roow < stepDown; roow++,col++){
-                let cell = document.getElementById(`${col}-${roow}`).innerText;
-                let cellPlusOne = document.getElementById(`${col+1}-${roow+1}`).innerText;
-                // console.log(document.getElementById(`${col+1}-${roow+1}`));
-                if(cell === cellPlusOne){
-                    if(cell == 'X'){
-                        counterX++;
-                        // (console.log('counter is here'+counterX))
-                        if(counterX === 5){
-                            scoreCalculation()
-                            alert('X is the winner');
-                            break;
-                        }
-                    }else if(cell == "O"){
-                        counterO++;
-                        if(counterO === 5){
-                            scoreCalculationO()
-                            alert('O is the winner');
-                            break;
+        // console.log(document.getElementById(`${col-1}-${roow-1}`));
+
+
+        if(cell === cellBefore){
+            if(cell === 'X'){
+                counterX++;
+                if(counterX === 5){
+                    scoreCalculation()
+                    alert('X is the winner ##l');
+                    break;
+                }
+            }else if(cell == 'O'){
+                counterO++;
+                if(counterO === 5){
+                    scoreCalculationO()
+                    alert('O is the winner #l');
+                    break;
+                }
+            }
+        }else if(cell !== cellBefore){
+            // console.log('they ganna check down row '+row +"and steps"+stepsdownrow);
+
+    
+            if(id < 19){
+                for(let roow=row, col=id; roow < stepsdownrow && col < 19; roow++,col++){
+                    let cell = document.getElementById(`${col}-${roow}`).innerText;
+                    if(col +1 <=19 && roow+1 <= 19){
+                        let cellPlusOne = document.getElementById(`${col+1}-${roow+1}`).innerText;
+
+                    if(cell === cellPlusOne){
+                        if(cell == 'X'){
+                            counterX++;
+                            if(counterX === 5){
+                                scoreCalculation()
+                                alert('X is the winner*l');
+                                break;
+                            }
+                        }else if(cell == "O"){
+                            counterO++;
+                            if(counterO === 5){
+                                scoreCalculationO()
+                                alert('O is the winner***l');
+                                break;
+                            }
                         }
                     }
                 }
+                }
+
             }
 
-
+    
+    
+            
         }
     }
+
 }
+
 
 
 }
@@ -446,17 +472,11 @@ function detectwinner(click, id, row) {
     verticalDetectwinner(id, row);
     diagonalRight(id,row)
     diagonalLeft(id,row);
-    
-
-// console.log('countx' +countX);
-// console.log('county' +countO);
-
 
 }
 
 
 function InstructionsBlock(){
-    // alert('ok')
     let element = document.querySelector('#instractions-text').style.cssText;
     // console.log(document.querySelector('#instractions-text').style.cssText)
     if(element == 'display: block;'){

@@ -26,6 +26,13 @@ function restartGame(){
         }
     }
 }
+// function matchNull(){
+//     for(let row =0; row <=19; row++){
+//         for(let col=0; col <=19; col++){
+//             let cell = document.getElementById(`${col}-${row}`);
+//         }
+//     }
+// }
 
 function scoreText(){
     let scorenumber =document.createElement("span");
